@@ -6,13 +6,14 @@ Esta aplicación ha sido desarrollada como parte del trabajo práctico del módu
 
 Su función y objetivo es el aprendizaje y manejo de las distintas herramientas que proporciona Java, por lo que se irá actualizando a lo largo de los meses.
 
-Actualmente la aplicación funciona con _arrays_, por lo que **la información almacenada durante la ejecución se perderá** una vez se cierre el programa. Más adelante la aplicación incorporará persistencia de datos, primero mediante ficheros y luego en base de datos.
+Actualmente la aplicación funciona con vectores (_arrays dinámicos_), por lo que **la información almacenada durante la ejecución se perderá** una vez se cierre el programa. Más adelante la aplicación incorporará persistencia de datos, primero mediante ficheros y luego en base de datos.
 
 1. [Antes de empezar](#1)
 2. [Creación de paquetes](#2)
 3. [Ejecución](#3)
 4. [Funcionamiento](#4)
 5. [Funciones en desarrollo](#5)
+6. [Lista de cambios](#6)
 
 ### <a name="1"></a>Antes de empezar
 
@@ -51,8 +52,25 @@ La aplicación finalizará cuando en el menú principal se pulse 0. **Al finaliz
 
 ### <a name="5"></a>Funciones en desarrollo
 
-Algunas funciones que se encuentran en desarrollo y que se ofrecerán más adelante son:
+Algunas funciones que se encuentran en desarrollo y que se ofrecerán en las siguientes versiones son:
 
-* Persistencia de datos
-* Inclusión de artículos en las revistas
-* Gestión de préstamos
+* Persistencia de datos (sobre ficheros).
+* Gestión de las fechas de los préstamos con la clase Calendar.
+* Inclusión de menús de selección en las funciones que lo requieran (por ejemplo, en la selección de material durante los préstamos).
+* Corrección de errores y perfeccionamiento de funciones.
+
+### <a name="6"></a>Lista de cambios
+
+A continuación se detallan las distintas versiones de esta aplicación y los principales cambios o funciones añadidas:
+
+**[9/01/2017] Bibliojava 0.1:**
+
+* Almacenamiento con arrays estáticos (persistencia en memoria).
+* Gestión de artículos (como material independiente), libros, revistas, CD-ROM y usuarios.
+
+**[19/01/2017] Bibliojava 0.2:**
+
+* Sustitución de los _arrays_ estáticos por _arrays_ dinámicos (vectores). Reescritura de funciones.
+* Gestión de préstamos: posibilidad de realizar y devolver préstamos de distintos materiales.
+* Cambios en la gestión de artículos: las revistas pasan a estar conformadas por artículos, de modo que los artículos dejan de ser un material independiente. El acceso a la gestión de artículos desaparece del menú principal y se realiza a través del menú de gestión de revistas. Cada revista tendrá su propia lista de artículos.
+* Corrección de errores.

@@ -1,9 +1,10 @@
 package biblioteca;
 
+import java.util.Vector;
+
 public class GestionLibros {
-	private final int TAM=100;
-	private int posicion=0;
-	private Libro[] gestionlibros=new Libro[TAM];
+
+	private Vector <Libro> gestionlibros=new Vector<Libro>();
 	
 	public void menu() {
 		int opcion=0;
@@ -32,7 +33,6 @@ public class GestionLibros {
 			case 0:
 				System.out.println("Volviendo al menú principal...");
 				System.out.println();
-				GestionBiblioteca.menu();
 				break;
 			default:
 				System.out.println("Debe introducir una opción entre 0 y 4.");
@@ -42,10 +42,7 @@ public class GestionLibros {
 	}
 
 	private void addLibro() {
-		if (posicion==TAM) {
-			System.out.println("No puede añadir más libros porque el espacio para libros está completo.");
-			return;
-		}
+		
 		long isbn=PedirDatos.leerLong("Introduzca el ISBN del libro que desea añadir.");
 		if (buscarLibro(isbn)!=-1) {
 			System.out.println("No se puede añadir el libro con el ISBN "+isbn+" porque ya existe.");
@@ -59,13 +56,12 @@ public class GestionLibros {
 		String materia=PedirDatos.leerCadena("Introduzca la materia.");
 		String editorial=PedirDatos.leerCadena("Introduzca la editorial.");
 		Libro l=new Libro(isbn, signatura, titulo, autor, materia, editorial);
-		this.gestionlibros[posicion]=l;
-		posicion++;
+		this.gestionlibros.addElement(l);
 		System.out.println("El libro con el ISBN "+isbn+" se ha creado correctamente.");
 	}
 
 	private void delLibro() {
-		if (posicion==0) {
+		if (this.gestionlibros.isEmpty()) {
 			System.out.println("No puede eliminar libros porque no existe ninguno.");
 			return;
 		}
@@ -75,17 +71,13 @@ public class GestionLibros {
 			System.out.println("No se puede eliminar el libro con el ISBN "+pos+" porque no existe.");
 			return;
 		}
-		for (int i = pos; i < posicion-1; i++) {
-			this.gestionlibros[i]=this.gestionlibros[i+1];
-		}
-		posicion--;
-		this.gestionlibros[posicion]=null;
+		this.gestionlibros.remove(pos);
 		System.out.println("El libro con el ISBN "+isbn+" ha sido eliminado correctamente.");
 	}
 
 	private void setLibro() {
-		if (posicion<=0) {
-			System.out.println("No puede modificar libros porque no existe ninguno.");
+		if (this.gestionlibros.isEmpty()) {
+			System.out.println("No puede eliminar libros porque no existe ninguno.");
 			return;
 		}
 		long isbn=PedirDatos.leerLong("Introduzca el ISBN del libro que desea modificar.");
@@ -95,27 +87,27 @@ public class GestionLibros {
 			return;
 		}
 		System.out.println("Los datos del libro con el ISBN "+isbn+" son:");
-		System.out.println(this.gestionlibros[pos]);
+		System.out.println(this.gestionlibros.elementAt(pos));
 		String signatura=PedirDatos.leerCadena("Introduzca la nueva signatura.");
 		String titulo=PedirDatos.leerCadena("Introduzca el nuevo título.");
 		String autor=PedirDatos.leerCadena("Introduzca el nuevo autor.");
 		String materia=PedirDatos.leerCadena("Introduzca la nueva materia.");
 		String editorial=PedirDatos.leerCadena("Introduzca la nueva editorial.");
 		Libro l=new Libro(isbn, signatura, titulo, autor, materia, editorial);
-		this.gestionlibros[pos]=l;
+		this.gestionlibros.add(pos, l);
 		System.out.println("El libro con el ISBN "+isbn+" ha sido modificado correctamente.");
 	}
 
 	private void mostrarLibros() {
-		for (int i = 0; i < posicion; i++) {
-			System.out.println(this.gestionlibros[i]);
+		for (int i = 0; i < this.gestionlibros.size(); i++) {
+			System.out.println(this.gestionlibros.elementAt(i));
 			System.out.println("-------------------------");
 		}
 	}
 	
-	private int buscarLibro(long isbn) {
-		for (int i = 0; i < posicion; i++) {
-			if (this.gestionlibros[i].getISBN()==isbn) {
+	public int buscarLibro(long isbn) {
+		for (int i = 0; i < this.gestionlibros.size(); i++) {
+			if (this.gestionlibros.elementAt(i).getISBN()==isbn) {
 				return i;
 			}
 		}

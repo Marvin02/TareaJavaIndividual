@@ -1,9 +1,10 @@
 package biblioteca;
 
+import java.util.Vector;
+
 public class GestionCdrom {
-	private final int TAM=100;
-	private int posicion=0;
-	private Cdrom[] gestioncdrom=new Cdrom[TAM];
+	
+	private Vector <Cdrom> gestioncdrom=new Vector <Cdrom>();
 	
 	public void menu() {
 		int opcion=0;
@@ -32,7 +33,6 @@ public class GestionCdrom {
 			case 0:
 				System.out.println("Volviendo al menú principal...");
 				System.out.println();
-				GestionBiblioteca.menu();
 				break;
 			default:
 				System.out.println("Debe introduir un número entre 0 y 4.");
@@ -42,14 +42,7 @@ public class GestionCdrom {
 	}
 
 	private void addCdrom() {
-		if (posicion>=TAM) {
-			System.out.println("No puede añadir más CD-ROM porque el espacio para CD-ROM está completo.");
-			return;
-		}
 		long codcdrom=PedirDatos.leerLong("Introduzca el código del CD-ROM que desea añadir.");
-		for (int i = 0; i < gestioncdrom.length; i++) {
-			
-		}
 		if (buscarCdrom(codcdrom)!=-1) {
 			System.out.println("No se puede añadir el CD-ROM con el código "+codcdrom+" porque ya existe.");
 			return;
@@ -60,13 +53,12 @@ public class GestionCdrom {
 		String materia=PedirDatos.leerCadena("Introduzca la materia del CD-ROM.");
 		String editorial=PedirDatos.leerCadena("Introduzca la editorial del CD-ROM.");
 		Cdrom c=new Cdrom(codcdrom, signatura, titulo, autor, materia, editorial);
-		this.gestioncdrom[posicion]=c;
-		posicion++;
+		this.gestioncdrom.addElement(c);
 		System.out.println("El CD-ROM con el código "+codcdrom+" se ha añadido correctamente.");
 	}
 
 	private void delCdrom() {
-		if (posicion<=0) {
+		if (this.gestioncdrom.isEmpty()) {
 			System.out.println("No puede eliminar CD-ROM porque no existe ninguno.");
 			return;
 		}
@@ -76,17 +68,13 @@ public class GestionCdrom {
 			System.out.println("No se puede eliminar el CD-ROM con el código "+codcdrom+" porque no existe.");
 			return;
 		}
-		for (int i = pos; i < posicion-1; i++) {
-			this.gestioncdrom[i]=this.gestioncdrom[i+1];
-		}
-		posicion--;
-		this.gestioncdrom[posicion]=null;
+		this.gestioncdrom.remove(pos);
 		System.out.println("El CD-ROM con el código "+codcdrom+" ha sido eliminado correctamente.");
 	}
 
 	private void setCdrom() {
-		if (posicion<=0) {
-			System.out.println("No puede modificar CD-ROM porque no existe ninguno.");
+		if (this.gestioncdrom.isEmpty()) {
+			System.out.println("No puede eliminar CD-ROM porque no existe ninguno.");
 			return;
 		}
 		long codcdrom=PedirDatos.leerLong("Introduzca el código del CD-ROM que desea modificar");
@@ -96,27 +84,27 @@ public class GestionCdrom {
 			return;
 		}
 		System.out.println("Los datos del CD-ROM con el código "+codcdrom+" son:");
-		System.out.println(this.gestioncdrom[pos]);
+		System.out.println(this.gestioncdrom.elementAt(pos));
 		String signatura=PedirDatos.leerCadena("Introduzca la nueva signatura del CD-ROM.");
 		String titulo=PedirDatos.leerCadena("Introduzca el nuevo título del CD-ROM.");
 		String autor=PedirDatos.leerCadena("Introduzca el nuevo autor del CD-ROM.");
 		String materia=PedirDatos.leerCadena("Introduzca la nueva materia del CD-ROM.");
 		String editorial=PedirDatos.leerCadena("Introduzca la nueva editorial del CD-ROM.");
 		Cdrom c=new Cdrom(codcdrom, signatura, titulo, autor, materia, editorial);
-		this.gestioncdrom[pos]=c;
+		this.gestioncdrom.add(pos, c);
 		System.out.println("El CD-ROM con el código "+codcdrom+" ha sido modificado correctamente.");
 	}
 	
 	private void mostrarCdrom() {
-		for (int i = 0; i < posicion; i++) {
-			System.out.println(this.gestioncdrom[i]);
+		for (int i = 0; i < this.gestioncdrom.size(); i++) {
+			System.out.println(this.gestioncdrom.elementAt(i));
 			System.out.println("-------------------------");
 		}
 	}
 	
-	private int buscarCdrom(long codcdrom) {
-		for (int i = 0; i < posicion; i++) {
-			if (this.gestioncdrom[i].getCodcdrom()==codcdrom) {
+	public int buscarCdrom(long codcdrom) {
+		for (int i = 0; i < this.gestioncdrom.size(); i++) {
+			if (this.gestioncdrom.elementAt(i).getCodcdrom()==codcdrom) {
 				return i;
 			}
 		}

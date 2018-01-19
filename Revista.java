@@ -6,6 +6,7 @@ public class Revista {
 	private String signatura;
 	private String nombre;
 	private String materia;
+	private GestionArticulos ga=new GestionArticulos();
 	
 	public Revista() {
 		
@@ -18,6 +19,10 @@ public class Revista {
 		this.materia=materia;
 	}
 
+	public void gestionArticulos() {
+		ga.menu(this.nombre);
+	}
+	
 	public long getCodrevista() {
 		return codrevista;
 	}
@@ -48,6 +53,25 @@ public class Revista {
 
 	public void setMateria(String materia) {
 		this.materia = materia;
+	}
+	
+	public GestionArticulos getGa() {
+		return ga;
+	}
+
+	public void setGa(GestionArticulos ga) {
+		this.ga = ga;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (codrevista ^ (codrevista >>> 32));
+		result = prime * result + ((materia == null) ? 0 : materia.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((signatura == null) ? 0 : signatura.hashCode());
+		return result;
 	}
 
 	@Override
@@ -81,7 +105,7 @@ public class Revista {
 
 	@Override
 	public String toString() {
-		return "Código de revista: "+codrevista+"\nSignatura: "+ signatura +"\\nNombre: "+ nombre +"\nMateria: "
-				+materia;
+		return "Código de revista: "+codrevista+"\nSignatura: "+ signatura +"\nNombre: "+ nombre +"\nMateria: "
+				+materia+"\nArtículos: "+this.ga;
 	}
 }
