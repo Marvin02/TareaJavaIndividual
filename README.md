@@ -34,17 +34,29 @@ Al ejecutar la aplicación aparecerá en la consola un menú que ofrecerá al us
 1. Gestión de libros.
 2. Gestión de revistas.
 3. Gestión de CD-ROM.
-4. Gestión de artículos.
-5. Gestión de usuarios.
+4. Gestión de usuarios.
+5. Realizar préstamo.
+6. Devolver préstamo.
+7. Mostrar préstamos.
 0. Salir.
 
-Cada una de las opciones (excepto la última, claro) lleva a un nuevo menú que permite la gestión de dicho recurso, con las siguientes opciones:
+Las cuatro primeras opciones dan acceso a sendos nuevos menús que permiten la gestión de los distintos materiales y de los usuarios de la biblioteca, y que cuentan con las siguientes opciones:
 
-1. Añadir recurso.
-2. Eliminar recurso.
-3. Modificar recurso.
-4. Mostrar recursos.
+1. Añadir recurso / usuario.
+2. Eliminar recurso / usuario.
+3. Modificar recurso / usuario.
+4. Mostrar recursos / usuarios.
 0. Volver al menú principal.
+
+Además, la gestión de revistas incluye una quinta opción: gestión de artículos. A través de ella podemos acceder a otro menú para gestionar los artículos que contiene cada revista, y que cuenta con las siguientes opciones:
+
+1. Añadir artículo.
+2. Eliminar artículo.
+3. Modificar artículo.
+4. Mostrar artículos.
+0. Volver al menú principal.
+
+Las opciones 5, 6 y 7 del menú principal de la biblioteca permiten la gestión de los préstamos de material de distinto tipo que los usuarios de la biblioteca solicitan o devuelven. La opción 7 ("Mostrar préstamos"), permite comprobar el historial de préstamos y devoluciones de material.
 
 El usuario podrá interactuar con la aplicación a través del teclado tanto para elegir la opción deseada como para introducir los distintos datos que se le irán solicitando.
 
@@ -55,7 +67,7 @@ La aplicación finalizará cuando en el menú principal se pulse 0. **Al finaliz
 Algunas funciones que se encuentran en desarrollo y que se ofrecerán en las siguientes versiones son:
 
 * Persistencia de datos (sobre ficheros).
-* Gestión de las fechas de los préstamos con la clase Calendar.
+* Gestión de las fechas de los préstamos con la clase Calendar. Automatización de las fechas de devolución al realizar un préstamo.
 * Inclusión de menús de selección en las funciones que lo requieran (por ejemplo, en la selección de material durante los préstamos).
 * Corrección de errores y perfeccionamiento de funciones.
 
@@ -63,12 +75,12 @@ Algunas funciones que se encuentran en desarrollo y que se ofrecerán en las sig
 
 A continuación se detallan las distintas versiones de esta aplicación y los principales cambios o funciones añadidas:
 
-**[9/01/2017] Bibliojava 0.1:**
+**[9/01/2017] Bibliojava 0.1.0:**
 
 * Almacenamiento con arrays estáticos (persistencia en memoria).
 * Gestión de artículos (como material independiente), libros, revistas, CD-ROM y usuarios.
 
-**[19/01/2017] Bibliojava 0.2:**
+**[19/01/2017] Bibliojava 0.2.0:**
 
 * Sustitución de los _arrays_ estáticos por _arrays_ dinámicos (vectores). Reescritura de funciones.
 * Gestión de préstamos: posibilidad de realizar y devolver préstamos de distintos materiales.
