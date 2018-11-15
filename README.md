@@ -75,12 +75,12 @@ Algunas funciones que se encuentran en desarrollo y que se ofrecerán en las sig
 
 A continuación se detallan las distintas versiones de esta aplicación y los principales cambios o funciones añadidas:
 
-**[9/01/2017] Bibliojava 0.1.0:**
+**[9/01/2018] Bibliojava 0.1.0:**
 
 * Almacenamiento con arrays estáticos (persistencia en memoria).
 * Gestión de artículos (como material independiente), libros, revistas, CD-ROM y usuarios.
 
-**[19/01/2017] Bibliojava 0.2.0:**
+**[19/01/2018] Bibliojava 0.2.0:**
 
 * Sustitución de los _arrays_ estáticos por _arrays_ dinámicos (vectores). Reescritura de funciones.
 * Gestión de préstamos: posibilidad de realizar y devolver préstamos de distintos materiales.
